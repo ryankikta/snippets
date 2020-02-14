@@ -1,0 +1,23 @@
+src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer//usually goes in header
+
+var onloadCallback = function() {
+    grecaptcha.render('===CAPTCHA HTML DIV ID===', {
+        'sitekey' : '===YOUR SITE KEY===',
+        'callback' : correctCaptcha
+    });
+};
+
+var i = 256;//feed in validation string here
+
+var correctCaptcha = function(response) {
+    var Validator = response;
+    //console.log(Validator);//To check the response
+        if (i > Validator.length) { //if (i == Validator)//change for validation string
+            // FAIL RESULT
+            alert ("Failure");
+        } else {
+            // ENABLE ID
+            document.getElementById("THE ID").disabled = false;
+        }
+        //console.log(Validator.length);
+};
